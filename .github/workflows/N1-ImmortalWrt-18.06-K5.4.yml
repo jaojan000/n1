@@ -103,7 +103,9 @@ jobs:
     - name: Download package
       working-directory: ${{ github.workspace }}/openwrt
       run: |
-        make download -j50
+        make download -j8
+        find dl -size -1024c -exec ls -l {} \;
+        find dl -size -1024c -exec rm -f {} \;
 
     - name: Cache
       uses: HiGarfield/cachewrtbuild@main
